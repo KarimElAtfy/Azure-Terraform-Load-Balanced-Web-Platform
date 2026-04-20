@@ -1,0 +1,49 @@
+project_name         = "cloudlab"
+environment          = "dev"
+location             = "germanywestcentral"
+
+resource_group_name  = "rg-cloudlab-dev-gwc"
+vnet_name            = "vnet-cloudlab-dev-gwc"
+
+vnet_address_space = [
+  "10.20.0.0/16"
+]
+
+app_subnet_name = "snet-app-dev-gwc"
+
+app_subnet_address_prefixes = [
+  "10.20.1.0/24"
+]
+
+bastion_subnet_address_prefixes = [
+  "10.20.10.0/26"
+]
+
+network_security_group_name = "nsg-app-dev-gwc"
+
+vm_size          = "Standard_B2pts_v2"
+admin_username   = "azureuser"
+ssh_public_key_path = "~/.ssh/id_rsa.pub"
+
+vm1_name     = "vm-web-01-dev-gwc"
+vm2_name     = "vm-web-02-dev-gwc"
+vm1_nic_name = "nic-web-01-dev-gwc"
+vm2_nic_name = "nic-web-02-dev-gwc"
+
+bastion_host_name      = "bas-cloudlab-dev-gwc"
+bastion_public_ip_name = "pip-bastion-dev-gwc"
+
+load_balancer_name           = "lb-web-dev-gwc"
+load_balancer_public_ip_name = "pip-lb-web-dev-gwc"
+backend_address_pool_name    = "beap-web-dev-gwc"
+health_probe_name            = "probe-http-dev-gwc"
+load_balancing_rule_name     = "lbr-http-dev-gwc"
+
+log_analytics_workspace_name = "law-cloudlab-dev-gwc"
+
+tags = {
+  project     = "azure-load-balanced-web-platform"
+  environment = "dev"
+  managed_by  = "terraform"
+  portfolio   = "true"
+}
