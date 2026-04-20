@@ -33,9 +33,23 @@ resource "azurerm_network_security_group" "app" {
   tags                = var.tags
 }
 
-resource "azurerm_network_security_rule" "allow_http_inbound" {
-  name                        = "Allow-HTTP-Inbound"
+resource "azurerm_network_security_rule" "allow_http_from_internet" {
+  name                        = "Allow-HTTP-From-Internet"
   priority                    = 100
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "Tcp"
+  source_port_range           = "*"
+  destination_port_range      = "80"
+  source_address_prefix       = "Internet"
+  destination_address_prefix  = "*"
+  resource_group_name         = azurerm_resource_group.this.name
+  network_security_group_name = azurerm_network_security_group.app.name
+}
+
+resource "azurerm_network_security_rule" "allow_lb_health_probe" {
+  name                        = "Allow-LB-Health-Probe"
+  priority                    = 105
   direction                   = "Inbound"
   access                      = "Allow"
   protocol                    = "Tcp"
