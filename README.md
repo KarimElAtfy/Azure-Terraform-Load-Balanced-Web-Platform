@@ -9,6 +9,12 @@ This project was designed as the next step after building:
 
 The goal of this project was to move from **private infrastructure design** to **proper public service delivery**, exposing a web service through a dedicated frontend while keeping the backend virtual machines private.
 
+## Architecture Diagram
+
+The diagram below shows the final deployed architecture, including the public Load Balancer, private backend virtual machines, Azure Bastion for administrative access, and Log Analytics for monitoring.
+
+![Azure Load Balanced Web Platform Architecture](./images/architecture-diagram.png)
+
 ---
 
 ## Project Overview
