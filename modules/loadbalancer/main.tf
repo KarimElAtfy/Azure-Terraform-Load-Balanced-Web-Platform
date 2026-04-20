@@ -46,7 +46,6 @@ resource "azurerm_lb_rule" "http" {
   probe_id                       = azurerm_lb_probe.http.id
   disable_outbound_snat          = true
   idle_timeout_in_minutes        = 4
-  enable_floating_ip             = false
 }
 
 resource "azurerm_network_interface_backend_address_pool_association" "vm1" {
