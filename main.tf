@@ -15,8 +15,8 @@ module "network" {
 module "compute" {
   source = "./modules/compute"
 
-  resource_group_name = var.resource_group_name
-  location            = var.location
+  resource_group_name = module.network.resource_group_name
+  location            = module.network.resource_group_location
   vm_size             = var.vm_size
   admin_username      = var.admin_username
   ssh_public_key_path = var.ssh_public_key_path
@@ -35,8 +35,8 @@ module "compute" {
 module "bastion" {
   source = "./modules/bastion"
 
-  resource_group_name    = var.resource_group_name
-  location               = var.location
+  resource_group_name    = module.network.resource_group_name
+  location               = module.network.resource_group_location
   bastion_host_name      = var.bastion_host_name
   bastion_public_ip_name = var.bastion_public_ip_name
   bastion_subnet_id      = module.network.bastion_subnet_id
@@ -46,8 +46,8 @@ module "bastion" {
 module "loadbalancer" {
   source = "./modules/loadbalancer"
 
-  resource_group_name          = var.resource_group_name
-  location                     = var.location
+  resource_group_name          = module.network.resource_group_name
+  location                     = module.network.resource_group_location
   load_balancer_name           = var.load_balancer_name
   load_balancer_public_ip_name = var.load_balancer_public_ip_name
   backend_address_pool_name    = var.backend_address_pool_name
@@ -61,8 +61,8 @@ module "loadbalancer" {
 module "monitoring" {
   source = "./modules/monitoring"
 
-  resource_group_name          = var.resource_group_name
-  location                     = var.location
+  resource_group_name          = module.network.resource_group_name
+  location                     = module.network.resource_group_location
   log_analytics_workspace_name = var.log_analytics_workspace_name
   tags                         = local.common_tags
 }
